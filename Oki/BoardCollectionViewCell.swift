@@ -14,11 +14,20 @@ let BACKGROUND_COLOR = UIColor.white
 
 class BoardCollectionViewCell: UICollectionViewCell {
     
-    @IBOutlet weak var button: UIButton!
+    @IBOutlet weak var button:UIButton!
+    
+    var parentViewController:BoardViewController!
     
     var colorAnimator:UIViewPropertyAnimator!
     
-    let NUM_PLAYERS = 10
+    let NUM_PLAYERS:Int = 15
+    
+    //repeat
+    var repeatMode:Bool = false
+    var repeatColor:UIColor!
+    var timer:Timer!
+    var baseRepeatInterval:TimeInterval!
+    var repeatScaleFactor:CGFloat!
     
     static var twoColorGenerator:TwoColorGenerator = TwoColorGenerator(stripSize: 8)
     
@@ -61,21 +70,49 @@ class BoardCollectionViewCell: UICollectionViewCell {
                     colorAnimator.stopAnimation(false)
                     colorAnimator.finishAnimation(at: .current)
                 }
-                self.button.backgroundColor = BoardCollectionViewCell.twoColorGenerator.generateNextColor()
+                if repeatMode {
+                   self.button.backgroundColor = repeatColor
+                } else {
+                    let color = BoardCollectionViewCell.twoColorGenerator.generateNextColor()
+                    self.button.backgroundColor = color
+                    repeatColor = color
+                    parentViewController.lastCellTapped = self
+                    let date = NSDate()
+                    parentViewController.lastTimeStamp = date.timeIntervalSince1970
+                }
                 
                 colorAnimator.addAnimations {
                     self.button.backgroundColor = BACKGROUND_COLOR
                 }
                 colorAnimator.startAnimation()
+                
                 break
             }
             sp.prepareToPlay()
         }
     }
     
-    
     @IBAction func onButtonPressed(_ sender: AnyObject) {
+        cancelRepeat()
         playSound()
+    }
+    
+    func changeRepeatInterval(scaleFactor:CGFloat!, fire:Bool) {
+        repeatScaleFactor = scaleFactor
+        if let timer = timer {
+            timer.invalidate()
+        }
+        timer = Timer.scheduledTimer(timeInterval: baseRepeatInterval / TimeInterval(repeatScaleFactor), target: self, selector: #selector(BoardCollectionViewCell.playSound), userInfo: nil, repeats: true)
+        if fire {
+            timer.fire()
+        }
+    }
+    
+    func cancelRepeat() {
+        repeatMode = false
+        if let timer = timer {
+            timer.invalidate()
+        }
     }
     
 }

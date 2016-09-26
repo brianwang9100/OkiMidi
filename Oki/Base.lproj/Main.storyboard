@@ -3,6 +3,8 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -58,19 +60,60 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wqe-eR-2NC">
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="20"/>
+                                <state key="normal" title="R">
+                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XbL-qi-cZE">
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="20"/>
+                                <state key="normal" title="C">
+                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Iy-Cc-qTh">
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="20"/>
+                                <state key="normal" title="S">
+                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kHK-LZ-Ys5">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="XbL-qi-cZE" secondAttribute="bottom" id="0vy-Wy-KF5"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="wqe-eR-2NC" secondAttribute="bottom" id="3Ae-lB-iiv"/>
                             <constraint firstItem="TSb-va-0eT" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="3Bf-gd-ZXF"/>
+                            <constraint firstItem="4Iy-Cc-qTh" firstAttribute="leading" secondItem="XbL-qi-cZE" secondAttribute="trailing" id="7sL-uH-ats"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="kHK-LZ-Ys5" secondAttribute="bottom" id="84x-Bg-Gip"/>
+                            <constraint firstItem="XbL-qi-cZE" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="1/3" id="9lM-6u-yOL"/>
                             <constraint firstItem="TSb-va-0eT" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="FS9-8F-Eab"/>
+                            <constraint firstItem="XbL-qi-cZE" firstAttribute="top" secondItem="TSb-va-0eT" secondAttribute="bottom" id="J6j-eW-B1x"/>
+                            <constraint firstItem="4Iy-Cc-qTh" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="1/3" id="NCr-Go-rC5"/>
+                            <constraint firstItem="kHK-LZ-Ys5" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Sju-4P-8lU"/>
+                            <constraint firstItem="wqe-eR-2NC" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="1/3" id="U25-Zn-c3F"/>
                             <constraint firstItem="TSb-va-0eT" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="X7E-F7-dDz"/>
+                            <constraint firstItem="kHK-LZ-Ys5" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="605" id="aBA-dN-jLA"/>
+                            <constraint firstItem="kHK-LZ-Ys5" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="caO-4o-1D6"/>
+                            <constraint firstItem="XbL-qi-cZE" firstAttribute="leading" secondItem="wqe-eR-2NC" secondAttribute="trailing" id="d7r-Ic-sec"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="wqe-eR-2NC" secondAttribute="leading" constant="16" id="fkV-XO-kJv"/>
+                            <constraint firstItem="4Iy-Cc-qTh" firstAttribute="top" secondItem="TSb-va-0eT" secondAttribute="bottom" id="lYf-kU-t3I"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="4Iy-Cc-qTh" secondAttribute="bottom" id="uzW-GR-hMA"/>
+                            <constraint firstItem="wqe-eR-2NC" firstAttribute="top" secondItem="TSb-va-0eT" secondAttribute="bottom" id="y9r-NM-aPL"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="TSb-va-0eT" secondAttribute="bottom" constant="42" id="zFF-3x-ZdS"/>
                         </constraints>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="667"/>
                     <connections>
+                        <outlet property="clearButton" destination="XbL-qi-cZE" id="RDF-vY-ehu"/>
                         <outlet property="collectionView" destination="TSb-va-0eT" id="mbp-JQ-dPU"/>
+                        <outlet property="settingsButton" destination="4Iy-Cc-qTh" id="5QP-GP-h2q"/>
+                        <outlet property="sliderButton" destination="wqe-eR-2NC" id="pwW-I9-BKL"/>
+                        <outlet property="sliderView" destination="kHK-LZ-Ys5" id="Jw4-78-yOP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
